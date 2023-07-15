@@ -4,10 +4,10 @@ import { PrismaService } from '@/app/infra/prisma/prisma.service';
 
 @Injectable()
 export class {{pascalCase name}}DeleteService {
-  constructor(private PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async remove(id: number) {
     const {{camelCase name}} = await this.prisma.{{camelCase name}}.delete({ where: { id } });
-    return {{camelCase name}}
+    return {{camelCase name}};
   }
 }
