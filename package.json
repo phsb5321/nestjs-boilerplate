@@ -78,6 +78,9 @@
       "/plop-generators/",
       "/node_modules/",
       "/dist/"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/$1"
+    }
   }
 }
