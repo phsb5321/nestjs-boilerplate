@@ -14,7 +14,7 @@ describe('{{pascalCase name}}UpdateService', () => {
       ],
     }).compile();
 
-    service = module.get<{{pascalCase name}}UpdateService>({{pascalCase name}}UpdateService);
+    service = module.get<{{pascalCase name}}UpdateService>({{pascalCase name}}UpdateService)
     prismaService = module.get<PrismaService>(PrismaService);
   });
 
@@ -28,11 +28,11 @@ describe('{{pascalCase name}}UpdateService', () => {
       const updateData = { name: 'Updated {{pascalCase name}}', description: 'This is an updated {{camelCase name}}.' };
       const updated{{pascalCase name}} = { id, ...updateData };
 
-      jest.spyOn(prismaService.{{camelCase name}}, 'update').mockResolvedValueOnce(updated{{pascalCase name}});
+      jest.spyOn(prismaService.{{camelCase name}}, 'update').mockResolvedValueOnce(updated{{pascalCase name}})
 
       const result = await service.update(id, updateData);
 
-      expect(result).toEqual(updated{{pascalCase name}});
+      expect(result).toEqual(updated{{pascalCase name}})
       expect(prismaService.{{camelCase name}}.update).toHaveBeenCalledWith({ where: { id }, data: updateData });
     });
   });

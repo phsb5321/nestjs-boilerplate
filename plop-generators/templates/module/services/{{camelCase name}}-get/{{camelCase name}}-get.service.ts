@@ -5,7 +5,7 @@ import { GetPaginated{{pascalCase name}}Dto } from '@/modules/{{kebabCase name}}
 
 @Injectable()
 export class {{pascalCase name}}GetService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private PrismaService) {}
 
   async findAll(params: GetPaginated{{pascalCase name}}Dto) {
     const { limit, offset, search, orderBy } = params;
@@ -30,11 +30,11 @@ export class {{pascalCase name}}GetService {
       where,
       orderBy: orderByClause,
     });
-    return {{camelCase name}};
+    return {{camelCase name}}
   }
 
   async findOne(id: number) {
     const {{camelCase name}} = await this.prisma.{{camelCase name}}.findUnique({ where: { id } });
-    return {{camelCase name}};
+    return {{camelCase name}}
   }
 }

@@ -19,7 +19,7 @@ describe('{{pascalCase name}}DeleteService', () => {
       ],
     }).compile();
 
-    service = module.get<{{pascalCase name}}DeleteService>({{pascalCase name}}DeleteService);
+    service = module.get<{{pascalCase name}}DeleteService>({{pascalCase name}}DeleteService)
     prismaService = module.get<PrismaService>(PrismaService);
   });
 
@@ -38,12 +38,12 @@ describe('{{pascalCase name}}DeleteService', () => {
 
     it('should return the deleted {{camelCase name}} object', async () => {
       const deleted{{pascalCase name}} = { /* Prisma {{camelCase name}} object */ };
-      prismaService.{{camelCase name}}.delete.mockResolvedValueOnce(deleted{{pascalCase name}});
+      prismaService.{{camelCase name}}.delete.mockResolvedValueOnce(deleted{{pascalCase name}})
 
       const id = 1;
       const result = await service.remove(id);
 
-      expect(result).toEqual(deleted{{pascalCase name}});
+      expect(result).toEqual(deleted{{pascalCase name}})
     });
   });
 });

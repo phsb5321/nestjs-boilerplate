@@ -11,4 +11,4 @@ import { InfraModule } from '@/app/infra/infra.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
