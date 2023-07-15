@@ -10,15 +10,15 @@ describe('{{pascalCase name}}DeleteController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [{{pascalCase name}}DeleteController],
-      providers: [
+      [
         { provide: {{pascalCase name}}DeleteService, useValue: {
-          remove: jest.fn(),
+          jest.fn(),
         } },
       ],
     }).compile();
 
-    controller = module.get<{{pascalCase name}}DeleteController>({{pascalCase name}}DeleteController);
-    service = module.get<{{pascalCase name}}DeleteService>({{pascalCase name}}DeleteService);
+    controller = module.get<{{pascalCase name}}DeleteController>({{pascalCase name}}DeleteController)
+    service = module.get<{{pascalCase name}}DeleteService>({{pascalCase name}}DeleteService)
   });
 
   it('should be defined', () => {
@@ -36,12 +36,12 @@ describe('{{pascalCase name}}DeleteController', () => {
 
     it('should return the deleted entity', async () => {
       const deleted{{pascalCase name}} = { /* deleted entity object */ };
-      jest.spyOn(service, 'remove').mockResolvedValueOnce(deleted{{pascalCase name}});
+      jest.spyOn(service, 'remove').mockResolvedValueOnce(deleted{{pascalCase name}})
 
       const id = '1';
       const result = await controller.remove(id);
 
-      expect(result).toBe(deleted{{pascalCase name}});
+      expect(result).toBe(deleted{{pascalCase name}})
     });
 
     it('should handle service errors', async () => {

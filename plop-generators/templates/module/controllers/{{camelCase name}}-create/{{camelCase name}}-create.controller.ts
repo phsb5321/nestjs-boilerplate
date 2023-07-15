@@ -7,12 +7,12 @@ import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 @ApiTags('{{kebabCase name}}')
 @Controller('{{kebabCase name}}')
 export class {{pascalCase name}}CreateController {
-  constructor(private readonly {{camelCase name}}CreateService: {{pascalCase name}}CreateService) {}
+  constructor(private readonly {{camelCase name}}{{pascalCase name}}CreateService) {}
 
   @Post()
   @ApiOperation({ summary: 'Create a new {{camelCase name}}' })
   @ApiResponse({ status: 201, description: 'The {{camelCase name}} has been created.'})
-  create(@Body() create{{pascalCase name}}Dto: Create{{pascalCase name}}Dto) {
-    return this.{{camelCase name}}CreateService.create(create{{pascalCase name}}Dto);
+  create(@Body() create{{pascalCase name}}Create{{pascalCase name}}Dto) {
+    return this.{{camelCase name}}CreateService.create(create{{pascalCase name}}Dto)
   }
 }

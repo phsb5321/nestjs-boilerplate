@@ -7,12 +7,12 @@ import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 @ApiTags('{{kebabCase name}}')
 @Controller('{{kebabCase name}}')
 export class {{pascalCase name}}UpdateController {
-  constructor(private readonly {{camelCase name}}UpdateService: {{pascalCase name}}UpdateService) {}
+  constructor(private readonly {{camelCase name}}{{pascalCase name}}UpdateService) {}
 
   @Put(':id')
   @ApiOperation({ summary: 'Update a {{camelCase name}} by id' })
   @ApiResponse({ status: 200, description: 'The {{camelCase name}} has been updated.'})
-  update(@Param('id') id: string, @Body() update{{pascalCase name}}Dto: Update{{pascalCase name}}Dto) {
-    return this.{{camelCase name}}UpdateService.update(+id, update{{pascalCase name}}Dto);
+  update(@Param('id') string, @Body() update{{pascalCase name}}Update{{pascalCase name}}Dto) {
+    return this.{{camelCase name}}UpdateService.update(+id, update{{pascalCase name}}Dto)
   }
 }

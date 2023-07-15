@@ -11,15 +11,15 @@ describe('{{pascalCase name}}CreateController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [{{pascalCase name}}CreateController],
-      providers: [
+      [
         { provide: {{pascalCase name}}CreateService, useValue: {
-          create: jest.fn(),
+          jest.fn(),
         } },
       ],
     }).compile();
 
-    controller = module.get<{{pascalCase name}}CreateController>({{pascalCase name}}CreateController);
-    service = module.get<{{pascalCase name}}CreateService>({{pascalCase name}}CreateService);
+    controller = module.get<{{pascalCase name}}CreateController>({{pascalCase name}}CreateController)
+    service = module.get<{{pascalCase name}}CreateService>({{pascalCase name}}CreateService)
   });
 
   it('should be defined', () => {
@@ -28,21 +28,21 @@ describe('{{pascalCase name}}CreateController', () => {
 
   describe('create', () => {
     it('should call the service with the correct arguments', async () => {
-      const create{{pascalCase name}}Dto: Create{{pascalCase name}}Dto = { /* create DTO object */ };
+      const create{{pascalCase name}}Create{{pascalCase name}}Dto = { /* create DTO object */ };
 
-      await controller.create(create{{pascalCase name}}Dto);
+      await controller.create(create{{pascalCase name}}Dto)
 
-      expect(service.create).toHaveBeenCalledWith(create{{pascalCase name}}Dto);
+      expect(service.create).toHaveBeenCalledWith(create{{pascalCase name}}Dto)
     });
 
     it('should return the created entity', async () => {
       const created{{pascalCase name}} = { /* created entity object */ };
-      jest.spyOn(service, 'create').mockResolvedValueOnce(created{{pascalCase name}});
+      jest.spyOn(service, 'create').mockResolvedValueOnce(created{{pascalCase name}})
 
-      const create{{pascalCase name}}Dto: Create{{pascalCase name}}Dto = { /* create DTO object */ };
-      const result = await controller.create(create{{pascalCase name}}Dto);
+      const create{{pascalCase name}}Create{{pascalCase name}}Dto = { /* create DTO object */ };
+      const result = await controller.create(create{{pascalCase name}}Dto)
 
-      expect(result).toBe(created{{pascalCase name}});
+      expect(result).toBe(created{{pascalCase name}})
     });
 
     it('should handle service errors', async () => {
@@ -51,10 +51,10 @@ describe('{{pascalCase name}}CreateController', () => {
         throw new Error(errorMessage);
       });
 
-      const create{{pascalCase name}}Dto: Create{{pascalCase name}}Dto = { /* create DTO object */ };
+      const create{{pascalCase name}}Create{{pascalCase name}}Dto = { /* create DTO object */ };
 
       try {
-        await controller.create(create{{pascalCase name}}Dto);
+        await controller.create(create{{pascalCase name}}Dto)
       } catch (error) {
         expect(error.message).toBe(errorMessage);
       }

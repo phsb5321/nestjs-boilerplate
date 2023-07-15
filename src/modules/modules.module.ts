@@ -13,4 +13,4 @@ import { InfraModule } from '@/app/infra/infra.module';
     // Add modules here
   ],
 })
-export class ModulesModule { }
+export class ModulesModule {}

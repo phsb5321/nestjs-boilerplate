@@ -6,12 +6,12 @@ import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 @ApiTags('{{kebabCase name}}')
 @Controller('{{kebabCase name}}')
 export class {{pascalCase name}}DeleteController {
-  constructor(private readonly {{camelCase name}}DeleteService: {{pascalCase name}}DeleteService) {}
+  constructor(private readonly {{camelCase name}}{{pascalCase name}}DeleteService) {}
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a {{camelCase name}} by id' })
   @ApiResponse({ status: 200, description: 'The {{camelCase name}} has been deleted.'})
-  remove(@Param('id') id: string) {
+  remove(@Param('id') string) {
     return this.{{camelCase name}}DeleteService.remove(+id);
   }
 }

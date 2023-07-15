@@ -5,4 +5,4 @@ import { PrismaService } from '@/app/infra/prisma/prisma.service';
   providers: [PrismaService],
   exports: [PrismaService],
 })
-export class InfraModule { }
+export class InfraModule {}
