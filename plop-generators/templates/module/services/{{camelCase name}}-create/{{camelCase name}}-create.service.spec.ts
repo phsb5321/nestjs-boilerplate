@@ -11,15 +11,18 @@ describe('{{pascalCase name}}CreateService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         {{pascalCase name}}CreateService,
-        { provide: PrismaService, useValue: {
-          {{camelCase name}}: {
-            jest.fn(),
+        {
+          provide: PrismaService,
+          useValue: {
+            {{camelCase name}}: {
+              create: jest.fn(),
+            },
           },
-        } },
+        },
       ],
     }).compile();
 
-    service = module.get<{{pascalCase name}}CreateService>({{pascalCase name}}CreateService)
+    service = module.get<{{pascalCase name}}CreateService>({{pascalCase name}}CreateService);
     prismaService = module.get<PrismaService>(PrismaService);
   });
 
@@ -29,7 +32,7 @@ describe('{{pascalCase name}}CreateService', () => {
 
   describe('create', () => {
     it('should call the Prisma service with the correct argument', async () => {
-      const data = { /* DTO object */ };
+      const data = { name: 'Test', description: 'Test description' };
 
       await service.create(data);
 
@@ -37,13 +40,19 @@ describe('{{pascalCase name}}CreateService', () => {
     });
 
     it('should return the created {{camelCase name}}', async () => {
-      const created{{pascalCase name}} = { /* Prisma {{camelCase name}} object */ };
-      prismaService.{{camelCase name}}.create.mockResolvedValueOnce(created{{pascalCase name}})
+      const created{{pascalCase name}} = {
+        id: 1,
+        name: 'Test',
+        description: 'Test description',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+      jest.spyOn(prismaService.{{camelCase name}}, 'create').mockResolvedValueOnce(created{{pascalCase name}});
 
-      const data = { /* DTO object */ };
+      const data = { name: 'Test', description: 'Test description' };
       const result = await service.create(data);
 
-      expect(result).toEqual(created{{pascalCase name}})
+      expect(result).toEqual(created{{pascalCase name}});
     });
   });
 });

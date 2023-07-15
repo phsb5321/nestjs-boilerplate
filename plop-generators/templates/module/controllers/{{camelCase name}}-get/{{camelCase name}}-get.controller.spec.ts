@@ -11,16 +11,19 @@ describe('{{pascalCase name}}GetController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [{{pascalCase name}}GetController],
-      [
-        { provide: {{pascalCase name}}GetService, useValue: {
-          jest.fn(),
-          findOne: jest.fn(),
-        } },
+      providers: [
+        {
+          provide: {{pascalCase name}}GetService,
+          useValue: {
+            findAll: jest.fn(),
+            findOne: jest.fn(),
+          },
+        },
       ],
     }).compile();
 
-    controller = module.get<{{pascalCase name}}GetController>({{pascalCase name}}GetController)
-    service = module.get<{{pascalCase name}}GetService>({{pascalCase name}}GetService)
+    controller = module.get<{{pascalCase name}}GetController>({{pascalCase name}}GetController);
+    service = module.get<{{pascalCase name}}GetService>({{pascalCase name}}GetService);
   });
 
   it('should be defined', () => {
@@ -29,21 +32,23 @@ describe('{{pascalCase name}}GetController', () => {
 
   describe('findAll', () => {
     it('should call the service with the correct argument', async () => {
-      const getPaginated{{pascalCase name}}GetPaginated{{pascalCase name}}Dto = { /* DTO object */ };
+      const getPaginated{{pascalCase name}}Dto = new GetPaginated{{pascalCase name}}Dto();
 
-      await controller.findAll(getPaginated{{pascalCase name}}Dto)
+      await controller.findAll(getPaginated{{pascalCase name}}Dto);
 
-      expect(service.findAll).toHaveBeenCalledWith(getPaginated{{pascalCase name}}Dto)
+      expect(service.findAll).toHaveBeenCalledWith(getPaginated{{pascalCase name}}Dto);
     });
 
     it('should return a list of all {{camelCase name}}', async () => {
-      const {{camelCase name}}List = [/* list of {{camelCase name}} objects */];
-      jest.spyOn(service, 'findAll').mockResolvedValueOnce({{camelCase name}}List)
+      const {{camelCase name}}List = [
+        /* list of {{camelCase name}} objects */
+      ];
+      jest.spyOn(service, 'findAll').mockResolvedValueOnce({{camelCase name}}List);
 
-      const getPaginated{{pascalCase name}}GetPaginated{{pascalCase name}}Dto = { /* DTO object */ };
-      const result = await controller.findAll(getPaginated{{pascalCase name}}Dto)
+      const getPaginated{{pascalCase name}}Dto = new GetPaginated{{pascalCase name}}Dto();
+      const result = await controller.findAll(getPaginated{{pascalCase name}}Dto);
 
-      expect(result).toBe({{camelCase name}}List)
+      expect(result).toBe({{camelCase name}}List);
     });
   });
 
@@ -57,14 +62,23 @@ describe('{{pascalCase name}}GetController', () => {
     });
 
     it('should return a {{camelCase name}} with the given id', async () => {
-      const {{camelCase name}} = { /* {{camelCase name}} object */ };
-      jest.spyOn(service, 'findOne').mockResolvedValueOnce({{camelCase name}})
+      const expectedObject = {
+        id: 1,
+        name: 'Test name',
+        description: 'Test description',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        // add other properties according to your actual type
+      };
+      const {{camelCase name}} = Promise.resolve(expectedObject);
+      jest.spyOn(service, 'findOne').mockResolvedValueOnce({{camelCase name}});
 
       const id = '1';
       const result = await controller.findOne(id);
 
-      expect(result).toBe({{camelCase name}})
+      expect(result).toEqual(expectedObject);
     });
+
 
     it('should handle service errors', async () => {
       const errorMessage = 'Error finding {{camelCase name}}';
@@ -82,3 +96,4 @@ describe('{{pascalCase name}}GetController', () => {
     });
   });
 });
+

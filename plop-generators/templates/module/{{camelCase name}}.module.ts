@@ -28,7 +28,7 @@ import { InfraModule } from '@/app/infra/infra.module';
     {{pascalCase name}}GetController,
     {{pascalCase name}}UpdateController,
   ],
-  [
+  providers: [
     {{pascalCase name}}CreateService,
     {{pascalCase name}}DeleteService,
     {{pascalCase name}}GetService,

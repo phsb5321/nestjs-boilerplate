@@ -5,10 +5,10 @@ import { Update{{pascalCase name}}Dto } from '@/modules/{{kebabCase name}}/dto/u
 
 @Injectable()
 export class {{pascalCase name}}UpdateService {
-  constructor(private PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async update(id: number, data: Update{{pascalCase name}}Dto) {
     const {{camelCase name}} = await this.prisma.{{camelCase name}}.update({ where: { id }, data });
-    return {{camelCase name}}
+    return {{camelCase name}};
   }
 }

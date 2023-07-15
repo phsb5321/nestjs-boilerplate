@@ -5,10 +5,10 @@ import { Create{{pascalCase name}}Dto } from '@/modules/{{kebabCase name}}/dto/c
 
 @Injectable()
 export class {{pascalCase name}}CreateService {
-  constructor(private PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async create(data: Create{{pascalCase name}}Dto) {
     const {{camelCase name}} = await this.prisma.{{camelCase name}}.create({ data });
-    return {{camelCase name}}
+    return {{camelCase name}};
   }
 }
