@@ -28,7 +28,7 @@ const ModuleGenerator = {
       type: "modify",
       path: "src/modules/modules.module.ts",
       pattern: /(\/\/ Add modules here)/,
-      template: "   {{pascalCase name}}Module,\n$1"
+      template: "{{pascalCase name}}Module,\n    $1"
     },
     {
       type: "append",

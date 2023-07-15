@@ -1,43 +1,83 @@
 version: '3.8'
 
 services:
-  app:
-    container_name: nestjs_boilerplate
+  # NestJS application service
+  nestjs_application:
+    # Name of the container running the service
+    container_name: nestjs_application_container
+    # Image to use to run the service
     image: node:19
+    # Working directory in the container
     working_dir: /app
     volumes:
+      # Mount the codebase into the container
       - .:/app
     ports:
+      # Map the application port to the host
       - '3000:3000'
-    command: npm run start:dev
+    # Commands to setup and start the application
+    command: >
+      sh -c "
+        # Check if node_modules exists and install dependencies
+        if [ ! -d node_modules ]; then
+          # Check if yarn is installed, if not install it
+          if ! [ -x "$(command -v yarn)" ]; then
+            echo 'yarn is not installed. Installing...'
+            npm install -g yarn
+          fi
+          echo 'Installing dependencies...'
+          yarn install
+        fi
+        # Generate Prisma client
+        echo 'Generating Prisma client...'
+        yarn prisma:generate
+        # Run Prisma migrations
+        echo 'Running Prisma migrations...'
+        yarn prisma:migrate
+        # Start the application
+        echo 'Starting the application...'
+        yarn start
+      "
+    # Specify the services this service depends on
     depends_on:
-      - db
-      - redis
+      - mysql_database
+      - redis_cache
     networks:
-      - backend
+      # Connect to the backend network
+      - backend_network
 
-  db:
-    container_name: mysql
+  # MySQL database service
+  mysql_database:
+    container_name: mysql_database_container
     image: mysql:5.7
     environment:
+      # Set root password for MySQL
       MYSQL_ROOT_PASSWORD: 'root'
+      # Set default database for MySQL
       MYSQL_DATABASE: 'test'
     ports:
+      # Map the MySQL port to the host
       - '3306:3306'
     volumes:
-      - mysql_data:/var/lib/mysql
+      # Persist MySQL data between container restarts
+      - mysql_data_volume:/var/lib/mysql
     networks:
-      - backend
+      - backend_network
 
-  redis:
-    container_name: redis
+  # Redis cache service
+  redis_cache:
+    container_name: redis_cache_container
     image: redis:latest
     ports:
+      # Map the Redis port to the host
       - '6379:6379'
+    networks:
+      - backend_network
 
+# Define the volumes used in services
 volumes:
-  mysql_data:
+  mysql_data_volume:
 
-
+    # Define the networks used in services
 networks:
-  backend:
+  backend_network:
