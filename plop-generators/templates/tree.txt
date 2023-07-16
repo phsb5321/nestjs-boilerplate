@@ -1,0 +1,51 @@
+.
+├── controller
+│   └── {{camelCase name}}-{{camelCase feature}}
+│       ├── {{camelCase name}}-{{camelCase feature}}.controller.spec.ts
+│       └── {{camelCase name}}-{{camelCase feature}}.controller.ts
+├── dto
+│   └── {{camelCase feature}}-{{camelCase entity}}.dto
+├── module
+│   ├── {{camelCase name}}.module.ts
+│   ├── controllers
+│   │   ├── {{camelCase name}}-create
+│   │   │   ├── {{camelCase name}}-create.controller.spec.ts
+│   │   │   └── {{camelCase name}}-create.controller.ts
+│   │   ├── {{camelCase name}}-delete
+│   │   │   ├── {{camelCase name}}-delete.controller.spec.ts
+│   │   │   └── {{camelCase name}}-delete.controller.ts
+│   │   ├── {{camelCase name}}-get
+│   │   │   ├── {{camelCase name}}-get.controller.spec.ts
+│   │   │   └── {{camelCase name}}-get.controller.ts
+│   │   ├── {{camelCase name}}-update
+│   │   │   ├── {{camelCase name}}-update.controller.spec.ts
+│   │   │   └── {{camelCase name}}-update.controller.ts
+│   │   └── index.ts
+│   ├── dto
+│   │   ├── create-{{kebabCase name}}.dto.ts
+│   │   ├── get-paginated-{{kebabCase name}}.dto.ts
+│   │   └── update-{{kebabCase name}}.dto.ts
+│   ├── entities
+│   │   └── {{camelCase name}}.entity.ts
+│   └── services
+│       ├── {{camelCase name}}-create
+│       │   ├── {{camelCase name}}-create.service.spec.ts
+│       │   └── {{camelCase name}}-create.service.ts
+│       ├── {{camelCase name}}-delete
+│       │   ├── {{camelCase name}}-delete.service.spec.ts
+│       │   └── {{camelCase name}}-delete.service.ts
+│       ├── {{camelCase name}}-get
+│       │   ├── {{camelCase name}}-get.service.spec.ts
+│       │   └── {{camelCase name}}-get.service.ts
+│       ├── {{camelCase name}}-update
+│       │   ├── {{camelCase name}}-update.service.spec.ts
+│       │   └── {{camelCase name}}-update.service.ts
+│       └── index.ts
+├── prisma-entity-template.prisma
+├── service
+│   └── {{camelCase name}}-{{camelCase feature}}
+│       ├── {{camelCase name}}-{{camelCase feature}}.service.spec.ts
+│       └── {{camelCase name}}-{{camelCase feature}}.service.ts
+└── tree.txt
+
+18 directories, 30 files

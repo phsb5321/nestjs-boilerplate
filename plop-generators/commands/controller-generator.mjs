@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 const ControllerGenerator = {
-  description: 'Generate a new controller within a module',
+  description: 'Generate a new standalone controller within a module',
 
   prompts: [
     {
@@ -16,10 +16,17 @@ const ControllerGenerator = {
       name: 'name',
       message: 'What is the controller name?',
     },
+    {
+      type: 'input',
+      name: 'feature',
+      message: 'What is the feature name?',
+    },
   ],
 
   actions: (data) => {
     const modulePath = `src/modules/${data.module}`;
+    const controllerPath = `${modulePath}/controllers/${data.name}-${data.feature}`;
+
     if (!fs.existsSync(path.resolve(modulePath))) {
       console.error(
         `Module '${data.module}' does not exist. Please create it first.`,
@@ -27,24 +34,30 @@ const ControllerGenerator = {
       return [];
     }
 
+    if (!fs.existsSync(path.resolve(controllerPath))) {
+      fs.mkdirSync(path.resolve(controllerPath), { recursive: true });
+    }
+
     return [
       {
-        type: 'add',
-        path: `${modulePath}/controllers/{{kebabCase name}}.controller.ts`,
-        templateFile: 'plop-generators/templates/controller/controller.ts.hbs',
+        type: 'addMany',
+        destination: controllerPath,
+        base: 'templates',
+        templateFiles: 'templates/*.ts',
+        data,
       },
       {
         type: 'modify',
         path: `${modulePath}/{{kebabCase module}}.module.ts`,
-        pattern: /(\/\/ Add controllers here)/,
+        pattern: /(\/\/ Add controllers imports here)/,
         template:
-          "import { {{pascalCase name}}Controller } from '@/modules/{{kebabCase module}}/controllers/{{kebabCase name}}.controller';\n$1",
+          "import { {{pascalCase name}}{{pascalCase feature}}Controller } from './controllers/{{kebabCase name}}-{{kebabCase feature}}/{{kebabCase name}}-{{kebabCase feature}}.controller';\n$1",
       },
       {
         type: 'modify',
         path: `${modulePath}/{{kebabCase module}}.module.ts`,
-        pattern: /(\/\/ Add controller providers here)/,
-        template: '   {{pascalCase name}}Controller,\n$1',
+        pattern: /(\/\/ Add new controllers here)/,
+        template: '   {{pascalCase name}}{{pascalCase feature}}Controller,\n$1',
       },
     ];
   },

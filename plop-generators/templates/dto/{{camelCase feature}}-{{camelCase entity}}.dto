@@ -1,0 +1,24 @@
+// File: {{camelCase entity}}-{{camelCase feature}}.dto.ts
+// Directory: src/{{camelCase entity}}/dto
+
+import { IsNotEmpty, IsOptional } from 'class-validator';
+
+export class {{pascalCase entity}}{{pascalCase feature}}Dto {
+  @IsNotEmpty()
+  id: number;
+
+  // @IsNotEmpty() decorator can be used if the field is required,
+  // @IsOptional() decorator can be used if the field is optional
+
+  @IsOptional()
+  prop1?: string;
+
+  @IsOptional()
+  prop2?: string;
+
+  // Add more properties as needed...
+
+  constructor(partial: Partial<{{pascalCase entity}}{{pascalCase feature}}Dto>) {
+    Object.assign(this, partial);
+  }
+}
